@@ -45,15 +45,12 @@ CFLAGS+=\
     -DBOARD_DGPU_COOLDOWN=10 \
 	-DSMOOTH_FANS_DOWN=40
 
-# Don't smooth fan speed changes below 25% to mitigate buzzing
+# Don't smooth fan speed changes below 18% to mitigate buzzing
 CFLAGS+=-DSMOOTH_FANS_MIN=0
 
-# Custom fan curve
+# CPU buzzes below 18
 CFLAGS+=-DBOARD_FAN_POINTS="\
-    FAN_POINT(44, 3), \
-    FAN_POINT(45, 6), \
-    FAN_POINT(46, 10), \
-    FAN_POINT(47, 14), \
+    FAN_POINT(0, 18), \
     FAN_POINT(48, 18), \
     FAN_POINT(49, 21), \
     FAN_POINT(50, 25), \
@@ -79,9 +76,12 @@ CFLAGS+=-DBOARD_FAN_POINTS="\
     FAN_POINT(70, 100) \
 "
 
-# Enable DGPU support
+# GPU buzzes below ???
 CFLAGS+=-DHAVE_DGPU=1
 CFLAGS+=-DBOARD_DGPU_FAN_POINTS="\
+    FAN_POINT(0, 1), \
+    FAN_POINT(42, 1), \
+    FAN_POINT(43, 2), \
     FAN_POINT(44, 3), \
     FAN_POINT(45, 6), \
     FAN_POINT(46, 10), \
